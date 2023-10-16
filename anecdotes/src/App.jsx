@@ -19,9 +19,12 @@ const App = () => {
     const newVotes = {...votes}
     newVotes[selected] += 1
     setVotes(newVotes)
+    console.log(votes)
   }
+  const maxIndex = Object.keys(votes).reduce((a, b) => votes[a] > votes[b] ? a : b)
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       <div>
         {anecdotes[selected]}
       </div>
@@ -30,6 +33,14 @@ const App = () => {
       </div>
       <button onClick={handleVotes}>vote</button>
       <button onClick={handleNextAnecdotes}>next anecdotes</button>
+
+      <h1>Anecdote with the most votes</h1>
+      <div>
+        {anecdotes[maxIndex]}
+      </div>
+      <div>
+      has {votes[maxIndex]} votes
+      </div>
     </div>
   )
 }
